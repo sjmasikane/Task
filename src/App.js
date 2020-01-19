@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Form from "./components/Form";
 
+class  App extends Component{
+  getRecipe =(e) =>{
+    const recipeName= e.target.elements.recipeName.value;
+    e.preventDefault();
+    console.log("Not working..."+recipeName);
+  }
+  render(){
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Recipe Search</h1>
+        </header>
+        <Form getRecipe={this.getRecipe}></Form>
+      </div>
+    );
+  } 
+}
 export default App;
