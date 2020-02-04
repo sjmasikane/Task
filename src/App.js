@@ -1,22 +1,31 @@
 import React, {Component} from 'react';
-import './App.css';
-
-import Form from "./components/Form";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { Home } from './Home';
+import { About } from './About';
+import { Contact } from './Contact';
+import { NoMatch } from './NoMatch';
+import { Layout } from './components/Layout';
+import { Navigation } from './components/Navigation';
+import { Jumbotron } from './components/Jumbotron';
 
 class  App extends Component{
-  getRecipe =(e) =>{
-    const recipeName= e.target.elements.recipeName.value;
-    e.preventDefault();
-    console.log("Not working..."+recipeName);
-  }
+  
   render(){
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Recipe Search changes</h1>
-        </header>
-        <Form getRecipe={this.getRecipe}></Form>
-      </div>
+        <React.Fragment>
+          <Navigation/>
+          <Jumbotron/>
+          <Layout>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route  path="/about" component={About}/>
+              <Route  path="/contact" component={Contact}/>
+              <Route  component={NoMatch}/>
+            </Switch>
+          </Router>
+          </Layout>
+        </React.Fragment>
     );
   }
 }
